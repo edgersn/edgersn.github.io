@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casamento 2026 – Convite Digital</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Jost',sans-serif;background:#faf7f2;color:#3a2e26;min-height:100vh}
+
+/* ── GUEST CARD ── */
+.card-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(ellipse at 50% 0%,#f5ede0 0%,#faf7f2 70%)}
+.card{background:#fff;max-width:400px;width:100%;padding:52px 40px 44px;position:relative;text-align:center}
+.card::before,.card::after{content:'';position:absolute;inset:7px;border:1px solid #d9c4a8;pointer-events:none}
+.card::after{inset:12px;border-color:#ecdcca}
+.ornament{color:#c4956a;letter-spacing:10px;font-size:13px;margin-bottom:20px;display:block}
+.card-welcome{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:#7a4f2e;line-height:1;margin-bottom:6px}
+.card-sub{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#b8956a;margin-bottom:36px}
+.hr{display:flex;align-items:center;gap:10px;margin:22px 0}
+.hr::before,.hr::after{content:'';flex:1;height:1px;background:#e8d5c0}
+.hr-icon{color:#c4956a;font-size:12px}
+.lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#b8956a;margin-bottom:6px}
+.val{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:#3a2e26;margin-bottom:22px;line-height:1.3}
+.val-big{font-style:normal;font-size:40px;font-weight:600;color:#7a4f2e;margin-bottom:22px;font-family:'Cormorant Garamond',serif}
+.status-pill{display:inline-block;padding:7px 24px;border-radius:30px;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.s-confirmado{background:#f0f9f4;color:#166534;border:1px solid #bbf7d0}
+.s-pendente{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
+.s-ausente{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
+.card-footer-text{font-size:13px;color:#9b7e6a;margin-top:28px}
+.card-thanks{font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:#7a4f2e;margin-top:6px}
+.print-btn{margin-top:24px;padding:10px 28px;border:1px solid #c4956a;background:transparent;color:#c4956a;border-radius:30px;cursor:pointer;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase}
+.print-btn:hover{background:#c4956a;color:#fff}
+
+/* ── ADMIN ── */
+.admin{max-width:1080px;margin:0 auto;padding:40px 20px 80px}
+.admin-top{text-align:center;margin-bottom:44px}
+.admin-top .eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#b8956a;margin-bottom:10px}
+.admin-top h1{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:400;color:#7a4f2e;margin-bottom:8px}
+.admin-top p{color:#9b7e6a;font-size:14px}
+
+.config{background:#fff;border:1px solid #e8d5c0;border-radius:14px;padding:20px 24px;margin-bottom:24px}
+.config label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#b8956a;display:block;margin-bottom:8px}
+.config input{width:100%;border:1px solid #e8d5c0;border-radius:8px;padding:10px 14px;font-size:14px;font-family:'Jost',sans-serif;outline:none;color:#3a2e26;background:#faf7f2}
+.config input:focus{border-color:#c4956a;background:#fff}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:28px}
+.stat{background:#fff;border:1px solid #e8d5c0;border-radius:12px;padding:16px;text-align:center}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;line-height:1;color:#7a4f2e}
+.stat-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#b8956a;margin-top:4px}
+
+.tabs{display:flex;gap:0;margin-bottom:-1px;position:relative;z-index:1}
+.tab-btn{padding:10px 24px;border:1px solid #e8d5c0;border-bottom:none;background:#faf7f2;color:#b8956a;cursor:pointer;font-family:'Jost',sans-serif;font-size:13px;border-radius:10px 10px 0 0;transition:all .15s}
+.tab-btn.active{background:#fff;color:#7a4f2e;border-color:#e8d5c0;font-weight:500}
+.tab-panel{background:#fff;border:1px solid #e8d5c0;border-radius:0 14px 14px 14px;overflow:hidden}
+
+.searchbar{padding:16px 20px;border-bottom:1px solid #f0e6d8;display:flex;gap:10px;flex-wrap:wrap}
+.searchbar input,.searchbar select{border:1px solid #e8d5c0;border-radius:8px;padding:9px 14px;font-size:13px;font-family:'Jost',sans-serif;color:#3a2e26;outline:none;background:#faf7f2}
+.searchbar input{flex:1;min-width:180px}
+.searchbar input:focus,.searchbar select:focus{border-color:#c4956a;background:#fff}
+
+table{width:100%;border-collapse:collapse}
+th{background:#7a4f2e;color:#f5ede0;padding:12px 16px;text-align:left;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:400}
+td{padding:11px 16px;border-bottom:1px solid #f5ede0;font-size:13px;color:#3a2e26}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fdf9f5}
+.id-cell{font-family:'Cormorant Garamond',serif;font-size:16px;color:#7a4f2e;font-style:italic}
+.qr-mini-btn{padding:5px 14px;border:1px solid #c4956a;border-radius:6px;background:#fff;color:#c4956a;cursor:pointer;font-size:12px;font-family:'Jost',sans-serif;transition:all .15s}
+.qr-mini-btn:hover{background:#c4956a;color:#fff}
+
+/* ── QR GRID ── */
+.qr-grid-wrap{padding:20px}
+.qr-search-bar{margin-bottom:20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.qr-search-bar input{border:1px solid #e8d5c0;border-radius:8px;padding:9px 14px;font-size:13px;flex:1;min-width:200px;outline:none;font-family:'Jost',sans-serif;background:#faf7f2;color:#3a2e26}
+.qr-search-bar input:focus{border-color:#c4956a;background:#fff}
+.info-note{font-size:12px;color:#b8956a;padding:10px 14px;background:#fdf9f5;border-radius:8px;border-left:3px solid #c4956a;margin-bottom:16px}
+.qr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.qr-card{background:#fff;border:1px solid #e8d5c0;border-radius:12px;padding:16px;text-align:center}
+.qr-card-name{font-family:'Cormorant Garamond',serif;font-size:14px;color:#7a4f2e;margin:10px 0 2px;font-style:italic;line-height:1.2}
+.qr-card-info{font-size:11px;color:#b8956a;margin-bottom:10px;letter-spacing:1px}
+.dl-btn{width:100%;padding:7px;border:1px solid #c4956a;border-radius:8px;background:#fff;color:#c4956a;cursor:pointer;font-size:12px;font-family:'Jost',sans-serif;transition:all .15s}
+.dl-btn:hover{background:#c4956a;color:#fff}
+
+/* ── MODAL ── */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(58,46,38,.55);z-index:200;align-items:center;justify-content:center;padding:20px}
+.modal-bg.open{display:flex}
+.modal{background:#fff;border-radius:20px;padding:36px 32px;text-align:center;max-width:320px;width:100%;position:relative}
+.modal h3{font-family:'Cormorant Garamond',serif;font-size:22px;color:#7a4f2e;margin-bottom:4px;font-style:italic}
+.modal p{font-size:12px;color:#b8956a;margin-bottom:20px;letter-spacing:1px}
+#modal-qr-box{margin:0 auto 20px;display:flex;justify-content:center}
+.modal-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.btn-gold{padding:9px 22px;border:1px solid #c4956a;background:#c4956a;color:#fff;border-radius:8px;cursor:pointer;font-size:12px;font-family:'Jost',sans-serif;letter-spacing:1px}
+.btn-ghost{padding:9px 22px;border:1px solid #e8d5c0;background:#fff;color:#9b7e6a;border-radius:8px;cursor:pointer;font-size:12px;font-family:'Jost',sans-serif}
+.btn-gold:hover{background:#b07d54}
+.close-x{position:absolute;top:14px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:#b8956a;line-height:1}
+
+/* ── INSTRUCTIONS ── */
+.inst{background:#fff;border:1px solid #e8d5c0;border-radius:14px;padding:24px 28px;margin-top:28px}
+.inst h3{font-family:'Cormorant Garamond',serif;font-size:20px;color:#7a4f2e;margin-bottom:16px}
+.inst-step{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start}
+.inst-num{width:28px;height:28px;border-radius:50%;background:#7a4f2e;color:#f5ede0;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.inst-step p{font-size:13px;color:#5a4a40;line-height:1.6}
+.inst-step code{background:#f5ede0;color:#7a4f2e;padding:2px 7px;border-radius:4px;font-size:12px;font-family:monospace}
+@media(max-width:600px){.admin{padding:20px 12px 60px}.card{padding:44px 28px 40px}}
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+
+<!-- Modal QR -->
+<div class="modal-bg" id="qr-modal">
+  <div class="modal">
+    <button class="close-x" onclick="closeModal()">×</button>
+    <h3 id="m-name">Nome</h3>
+    <p id="m-info">Mesa · Convidado</p>
+    <div id="modal-qr-box"></div>
+    <div class="modal-actions">
+      <button class="btn-gold" onclick="downloadCurrentQR()">⬇ PNG Transparente</button>
+      <button class="btn-ghost" onclick="closeModal()">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════════
+// ⚙️ CONFIGURAÇÃO – altere após fazer deploy
+// ════════════════════════════════════════════
+let BASE_URL = 'https://SEU-USERNAME.github.io/casamento';
+
+// ════════════════════════════════════════════
+// 🎲 GERAÇÃO DE 200 CONVIDADOS (determinístico)
+// ════════════════════════════════════════════
+function seededRandom(seed) {
+  seed = (seed * 1664525 + 1013904223) & 0x7fffffff;
+  return [seed / 0x7fffffff, seed];
+}
+
+function generateGuests() {
+  const mF = ['João','Manuel','António','Carlos','Pedro','Paulo','Miguel','Fernando','Ricardo','Eduardo','Luís','Francisco','Hélder','Nuno','Bruno','André','Daniel','Marcos','Tiago','Rafael','Kelson','Adilson','Ernesto','Celestino','Joaquim','Filipe','Domingos','Faustino','Sebastião','Augusto','Horácio','Leandro','Osvaldo','Reinaldo','Venâncio','Guilherme','Vladmir','Isaías','Edmundo','Hélio'];
+  const fF = ['Maria','Ana','Sofia','Isabel','Catarina','Marta','Sandra','Paula','Carla','Joana','Luísa','Teresa','Beatriz','Inês','Margarida','Filomena','Conceição','Lurdes','Graça','Helena','Rosa','Amélia','Felícia','Benedita','Albertina','Leopoldina','Deolinda','Esperança','Fátima','Gertrudes','Susana','Vanessa','Patrícia','Cláudia','Débora','Elisabete','Fernanda','Gisela','Hortência','Ivone'];
+  const sN = ['Silva','Santos','Costa','Ferreira','Oliveira','Pereira','Rodrigues','Almeida','Nascimento','Carvalho','Lopes','Marques','Fernandes','Gomes','Martins','Pinto','Ribeiro','Sousa','Machado','Dias','Andrade','Araújo','Campos','Castro','Correia','Cunha','Figueiredo','Freitas','Henriques','Lima','Matos','Moura','Neves','Nunes','Pires','Ramos','Reis','Rocha','Tavares','Teixeira'];
+  const comp = ['e esposa','e marido','e acompanhante','e família','e esposo',''];
+  const st = ['Confirmado','Confirmado','Confirmado','Confirmado','Confirmado','Confirmado','Confirmado','Pendente','Pendente','Ausente'];
+
+  let s = 7391;
+  function r() { const [v,ns] = seededRandom(s); s=ns*1000+7; return v; }
+
+  const guests = [];
+  for (let i = 1; i <= 200; i++) {
+    const table = Math.ceil(i / 4);
+    const isMale = r() > 0.44;
+    const pool = isMale ? mF : fF;
+    const fn = pool[Math.floor(r() * pool.length)];
+    const s1 = sN[Math.floor(r() * sN.length)];
+    const s2 = sN[Math.floor(r() * sN.length)];
+    const c  = comp[Math.floor(r() * comp.length)];
+    const status = st[Math.floor(r() * st.length)];
+    let name = fn + ' ' + s1;
+    if (s1 !== s2 && r() > 0.48) name += ' ' + s2;
+    if (c) name += ' ' + c;
+    guests.push({ id: i, name, table, status });
+  }
+  return guests;
+}
+
+const GUESTS = generateGuests();
+
+// ════════════════════════════════════════════
+// 🗺️ ROUTING
+// ════════════════════════════════════════════
+const urlParams = new URLSearchParams(window.location.search);
+const gIdParam  = parseInt(urlParams.get('id'));
+
+if (gIdParam >= 1 && gIdParam <= 200) {
+  renderCard(gIdParam);
+} else {
+  renderAdmin();
+}
+
+// ════════════════════════════════════════════
+// 💌 VISTA CONVIDADO
+// ════════════════════════════════════════════
+function renderCard(id) {
+  const g = GUESTS.find(x => x.id === id);
+  if (!g) { document.getElementById('app').innerHTML = '<div style="text-align:center;padding:80px 20px;font-family:Cormorant Garamond,serif;color:#9b7e6a;font-size:22px;font-style:italic">Convidado não encontrado.</div>'; return; }
+  document.title = g.name + ' – Casamento 2026';
+  const sc = 's-' + g.status.toLowerCase();
+  document.getElementById('app').innerHTML = `
+    <div class="card-wrap">
+      <div class="card">
+        <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+        <div class="card-welcome">Bem-vindo!</div>
+        <div class="card-sub">Convite de Casamento · 2026</div>
+        <div class="hr"><div class="hr-icon">♥</div></div>
+        <div class="lbl">Nome</div>
+        <div class="val">${g.name}</div>
+        <div class="lbl">Convidado Nº</div>
+        <div class="val-big">${String(g.id).padStart(3,'0')}</div>
+        <div class="lbl">Mesa</div>
+        <div class="val-big">${g.table}</div>
+        <div class="lbl" style="margin-bottom:10px">Estado</div>
+        <span class="status-pill ${sc}">${g.status}</span>
+        <div class="hr"><div class="hr-icon">✦</div></div>
+        <div class="card-footer-text">Obrigado por celebrar connosco.</div>
+        <div class="card-thanks">Muito obrigado ♥</div>
+        <div><button class="print-btn" onclick="window.print()">Imprimir / Guardar</button></div>
+      </div>
+    </div>`;
+}
+
+// ════════════════════════════════════════════
+// 🛠️ ADMIN
+// ════════════════════════════════════════════
+let activeTab = 'lista';
+let searchStr = '';
+let statusFil = '';
+
+function renderAdmin() {
+  const conf = GUESTS.filter(g => g.status==='Confirmado').length;
+  const pend = GUESTS.filter(g => g.status==='Pendente').length;
+  const ause = GUESTS.filter(g => g.status==='Ausente').length;
+  document.getElementById('app').innerHTML = `
+    <div class="admin">
+      <div class="admin-top">
+        <div class="eyebrow">✦ Sistema de Convites ✦</div>
+        <h1>Gestão de Convidados</h1>
+        <p>200 convidados · 50 mesas · QR codes com fundo transparente</p>
+      </div>
+
+      <div class="config">
+        <label>🔗 URL do GitHub Pages — altere após publicar</label>
+        <input id="url-inp" value="${BASE_URL}" placeholder="https://seu-username.github.io/casamento" oninput="BASE_URL=this.value">
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="stat-n">200</div><div class="stat-l">Total</div></div>
+        <div class="stat"><div class="stat-n" style="color:#166534">${conf}</div><div class="stat-l">Confirmados</div></div>
+        <div class="stat"><div class="stat-n" style="color:#92400e">${pend}</div><div class="stat-l">Pendentes</div></div>
+        <div class="stat"><div class="stat-n" style="color:#991b1b">${ause}</div><div class="stat-l">Ausentes</div></div>
+        <div class="stat"><div class="stat-n">50</div><div class="stat-l">Mesas</div></div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn ${activeTab==='lista'?'active':''}" onclick="switchTab('lista')">📋 Lista de Convidados</button>
+        <button class="tab-btn ${activeTab==='qr'?'active':''}" onclick="switchTab('qr')">📱 Gerar QR Codes</button>
+        <button class="tab-btn ${activeTab==='inst'?'active':''}" onclick="switchTab('inst')">🚀 Publicar no GitHub</button>
+      </div>
+      <div class="tab-panel" id="tab-body"></div>
+    </div>`;
+  renderTab();
+}
+
+function switchTab(t) {
+  activeTab = t;
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.includes(t==='lista'?'Lista':t==='qr'?'QR':'Publicar'));
+  });
+  renderTab();
+}
+
+function renderTab() {
+  const el = document.getElementById('tab-body');
+  if (activeTab==='lista') renderList(el);
+  else if (activeTab==='qr') renderQRTab(el);
+  else renderInstructions(el);
+}
+
+function getFiltered() {
+  const q = searchStr.toLowerCase();
+  return GUESTS.filter(g =>
+    (!q || g.name.toLowerCase().includes(q) || String(g.id).includes(q)) &&
+    (!statusFil || g.status===statusFil)
+  );
+}
+
+function renderList(el) {
+  const list = getFiltered();
+  const rows = list.map(g => {
+    const sc = 's-'+g.status.toLowerCase();
+    return `<tr>
+      <td><span class="id-cell">#${String(g.id).padStart(3,'0')}</span></td>
+      <td>${g.name}</td>
+      <td style="font-weight:500">Mesa ${g.table}</td>
+      <td><span class="status-pill ${sc}" style="font-size:10px;padding:4px 12px">${g.status}</span></td>
+      <td><button class="qr-mini-btn" onclick="openModal(${g.id})">📱 QR</button></td>
+    </tr>`;
+  }).join('') || `<tr><td colspan="5" style="text-align:center;padding:32px;color:#b8956a;font-style:italic">Nenhum resultado.</td></tr>`;
+  el.innerHTML = `
+    <div class="searchbar">
+      <input placeholder="🔍 Pesquisar por nome ou número..." value="${searchStr}" oninput="searchStr=this.value;renderTab()">
+      <select onchange="statusFil=this.value;renderTab()" style="cursor:pointer">
+        <option value="" ${!statusFil?'selected':''}>Todos os estados</option>
+        <option value="Confirmado" ${statusFil==='Confirmado'?'selected':''}>Confirmado</option>
+        <option value="Pendente" ${statusFil==='Pendente'?'selected':''}>Pendente</option>
+        <option value="Ausente" ${statusFil==='Ausente'?'selected':''}>Ausente</option>
+      </select>
+    </div>
+    <div style="overflow-x:auto"><table><thead><tr><th>Nº</th><th>Nome</th><th>Mesa</th><th>Estado</th><th>QR Code</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <div style="padding:14px 20px;font-size:12px;color:#b8956a;text-align:right">${list.length} convidado(s)</div>`;
+}
+
+let qrFilter = '';
+function renderQRTab(el) {
+  el.innerHTML = `
+    <div class="qr-grid-wrap">
+      <div class="info-note">📌 QR codes com fundo <strong>transparente</strong> — prontos para colocar no convite. Clique em "⬇ PNG" para descarregar cada um.</div>
+      <div class="qr-search-bar">
+        <input placeholder="🔍 Filtrar convidados..." value="${qrFilter}" oninput="qrFilter=this.value;updateQRGrid()">
+        <span style="font-size:12px;color:#b8956a;align-self:center">Máx. 60 visíveis — filtre para encontrar</span>
+      </div>
+      <div class="qr-grid" id="qr-grid"></div>
+    </div>`;
+  updateQRGrid();
+}
+
+function updateQRGrid() {
+  const q = qrFilter.toLowerCase();
+  const list = GUESTS.filter(g => !q || g.name.toLowerCase().includes(q) || String(g.id).includes(q)).slice(0,60);
+  const grid = document.getElementById('qr-grid');
+  if (!grid) return;
+  grid.innerHTML = list.map(g => `
+    <div class="qr-card">
+      <div id="qrt-${g.id}" style="width:130px;height:130px;margin:0 auto"></div>
+      <div class="qr-card-name">${g.name.replace(/ e (esposa|marido|acompanhante|família|filhos|esposo)/,'').split(' ').slice(0,3).join(' ')}</div>
+      <div class="qr-card-info">#${String(g.id).padStart(3,'0')} · Mesa ${g.table}</div>
+      <button class="dl-btn" onclick="downloadQRById(${g.id})">⬇ PNG Transparente</button>
+    </div>`).join('');
+  setTimeout(() => list.forEach(g => generateQRThumb(g)), 80);
+}
+
+function generateQRThumb(g) {
+  const el = document.getElementById('qrt-'+g.id);
+  if (!el || el.childNodes.length) return;
+  try {
+    new QRCode(el, {
+      text: BASE_URL+'?id='+g.id,
+      width: 130, height: 130,
+      colorDark: '#3a2e26',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  } catch(e){}
+}
+
+function renderInstructions(el) {
+  el.innerHTML = `
+    <div style="padding:28px 28px 36px">
+      <div class="inst" style="border:none;padding:0;margin:0">
+        <h3 style="margin-bottom:20px">🚀 Publicar no GitHub Pages (Gratuito)</h3>
+        <div class="inst-step"><div class="inst-num">1</div><p>Cria uma conta gratuita em <strong>github.com</strong> e um novo repositório chamado <code>casamento</code> (público).</p></div>
+        <div class="inst-step"><div class="inst-num">2</div><p>Faz upload do ficheiro <code>index.html</code> para o repositório. Podes arrastar e largar directamente no GitHub.</p></div>
+        <div class="inst-step"><div class="inst-num">3</div><p>No repositório, vai a <strong>Settings → Pages</strong>. Em "Source" selecciona <strong>main branch → / (root)</strong>. Clica Save.</p></div>
+        <div class="inst-step"><div class="inst-num">4</div><p>O teu site fica disponível em: <code>https://SEU-USERNAME.github.io/casamento/</code></p></div>
+        <div class="inst-step"><div class="inst-num">5</div><p>Volta ao campo <strong>URL do GitHub Pages</strong> acima e actualiza o URL. Os QR codes vão apontar para o endereço correcto.</p></div>
+        <div class="inst-step"><div class="inst-num">6</div><p>Cada convidado acede via: <code>https://SEU-USERNAME.github.io/casamento/?id=125</code> — o QR code faz isso automaticamente.</p></div>
+
+        <div style="margin-top:24px;border-top:1px solid #e8d5c0;padding-top:24px">
+          <h3 style="margin-bottom:16px">📱 Opções Gratuitas Fiáveis para Hospedar</h3>
+          <table style="width:100%;font-size:13px">
+            <thead><tr><th style="background:#7a4f2e;color:#f5ede0;padding:10px 14px;border-radius:8px 0 0 0">Plataforma</th><th style="background:#7a4f2e;color:#f5ede0;padding:10px 14px">Limite</th><th style="background:#7a4f2e;color:#f5ede0;padding:10px 14px">Domínio</th><th style="background:#7a4f2e;color:#f5ede0;padding:10px 14px;border-radius:0 8px 0 0">Ideal para</th></tr></thead>
+            <tbody>
+              <tr><td style="padding:10px 14px;border-bottom:1px solid #f0e6d8;font-weight:500">⭐ GitHub Pages</td><td style="padding:10px 14px;border-bottom:1px solid #f0e6d8">Sem limite de tempo</td><td style="padding:10px 14px;border-bottom:1px solid #f0e6d8">username.github.io/casamento</td><td style="padding:10px 14px;border-bottom:1px solid #f0e6d8">Sites estáticos — perfeito</td></tr>
+              <tr><td style="padding:10px 14px;border-bottom:1px solid #f0e6d8">Netlify</td><td style="padding:10px 14px;border-bottom:1px solid #f0e6d8">Sem limite, 100GB/mês</td><td style="padding:10px 14px;border-bottom:1px solid #f0e6d8">nome-aleatorio.netlify.app</td><td style="padding:10px 14px;border-bottom:1px solid #f0e6d8">Deploy por arrasto de pasta</td></tr>
+              <tr><td style="padding:10px 14px;border-bottom:1px solid #f0e6d8">Vercel</td><td style="padding:10px 14px;border-bottom:1px solid #f0e6d8">Sem limite</td><td style="padding:10px 14px;border-bottom:1px solid #f0e6d8">casamento.vercel.app</td><td style="padding:10px 14px;border-bottom:1px solid #f0e6d8">Muito rápido, global CDN</td></tr>
+              <tr><td style="padding:10px 14px">Cloudflare Pages</td><td style="padding:10px 14px">Sem limite</td><td style="padding:10px 14px">casamento.pages.dev</td><td style="padding:10px 14px">Máxima velocidade, gratuito</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="margin-top:24px;border-top:1px solid #e8d5c0;padding-top:24px">
+          <h3 style="margin-bottom:16px">🖼️ QR Code PNG Transparente — Ferramentas Online Gratuitas</h3>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;font-size:13px">
+            <div style="background:#fdf9f5;border:1px solid #e8d5c0;border-radius:10px;padding:14px"><strong>⭐ Este ficheiro HTML</strong><br><span style="color:#9b7e6a">Gera e descarrega PNG transparente directamente</span></div>
+            <div style="background:#fdf9f5;border:1px solid #e8d5c0;border-radius:10px;padding:14px"><strong>QRCode Monkey</strong><br><span style="color:#9b7e6a">qrcode-monkey.com — suporta fundo transparente</span></div>
+            <div style="background:#fdf9f5;border:1px solid #e8d5c0;border-radius:10px;padding:14px"><strong>QR Code Generator</strong><br><span style="color:#9b7e6a">qr-code-generator.com — PNG grátis</span></div>
+            <div style="background:#fdf9f5;border:1px solid #e8d5c0;border-radius:10px;padding:14px"><strong>GoQR.me</strong><br><span style="color:#9b7e6a">API gratuita: goqr.me/api — PNG directo</span></div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ════════════════════════════════════════════
+// 📱 MODAL QR
+// ════════════════════════════════════════════
+let modalGuest = null;
+function openModal(id) {
+  modalGuest = GUESTS.find(g => g.id===id);
+  document.getElementById('m-name').textContent = modalGuest.name;
+  document.getElementById('m-info').textContent = `Mesa ${modalGuest.table} · Convidado #${String(modalGuest.id).padStart(3,'0')}`;
+  const box = document.getElementById('modal-qr-box');
+  box.innerHTML = '';
+  new QRCode(box, {
+    text: BASE_URL+'?id='+id,
+    width: 200, height: 200,
+    colorDark: '#3a2e26',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H
+  });
+  document.getElementById('qr-modal').classList.add('open');
+}
+function closeModal() { document.getElementById('qr-modal').classList.remove('open'); }
+
+// ════════════════════════════════════════════
+// ⬇️ DOWNLOAD PNG TRANSPARENTE
+// ════════════════════════════════════════════
+function makeTransparent(srcCanvas) {
+  const c = document.createElement('canvas');
+  c.width = srcCanvas.width; c.height = srcCanvas.height;
+  const ctx = c.getContext('2d');
+  ctx.drawImage(srcCanvas, 0, 0);
+  const d = ctx.getImageData(0,0,c.width,c.height);
+  for (let i=0;i<d.data.length;i+=4) {
+    if (d.data[i]>200 && d.data[i+1]>200 && d.data[i+2]>200) d.data[i+3]=0;
+  }
+  ctx.putImageData(d,0,0);
+  return c;
+}
+
+function downloadCurrentQR() {
+  const canvas = document.querySelector('#modal-qr-box canvas');
+  if (!canvas) return;
+  const tc = makeTransparent(canvas);
+  const a = document.createElement('a');
+  a.download = `qr-convidado-${String(modalGuest.id).padStart(3,'0')}.png`;
+  a.href = tc.toDataURL('image/png');
+  a.click();
+}
+
+function downloadQRById(id) {
+  const g = GUESTS.find(x=>x.id===id);
+  const tmp = document.createElement('div');
+  tmp.style.cssText='position:absolute;left:-9999px;visibility:hidden';
+  document.body.appendChild(tmp);
+  new QRCode(tmp, {
+    text: BASE_URL+'?id='+id,
+    width: 500, height: 500,
+    colorDark: '#000000',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H
+  });
+  setTimeout(()=>{
+    const cv = tmp.querySelector('canvas');
+    if (cv) {
+      const tc = makeTransparent(cv);
+      const a = document.createElement('a');
+      a.download = `qr-${String(id).padStart(3,'0')}-mesa${g.table}.png`;
+      a.href = tc.toDataURL('image/png');
+      a.click();
+    }
+    document.body.removeChild(tmp);
+  }, 250);
+}
+
+document.getElementById('qr-modal').addEventListener('click', e => { if(e.target===e.currentTarget) closeModal(); });
+</script>
+</body>
+</html>
