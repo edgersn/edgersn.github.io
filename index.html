@@ -9,8 +9,9 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Jost',sans-serif;background:#faf7f2;color:#3a2e26;min-height:100vh}
+/* ── CARD ── */
 .card-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(ellipse at 50% 0%,#f5ede0 0%,#faf7f2 70%)}
-.card{background:#fff;max-width:400px;width:100%;padding:52px 40px 44px;position:relative;text-align:center}
+.card{background:#fff;max-width:400px;width:100%;padding:52px 40px 44px;position:relative;text-align:center;box-shadow:0 4px 32px rgba(122,79,46,.08)}
 .card::before,.card::after{content:'';position:absolute;inset:7px;border:1px solid #d9c4a8;pointer-events:none}
 .card::after{inset:12px;border-color:#ecdcca}
 .ornament{color:#c4956a;letter-spacing:10px;font-size:13px;margin-bottom:20px;display:block}
@@ -22,72 +23,79 @@ body{font-family:'Jost',sans-serif;background:#faf7f2;color:#3a2e26;min-height:1
 .lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#b8956a;margin-bottom:6px}
 .val{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:#3a2e26;margin-bottom:22px;line-height:1.3}
 .val-big{font-style:normal;font-size:40px;font-weight:600;color:#7a4f2e;margin-bottom:22px;font-family:'Cormorant Garamond',serif}
+.val-tbd{font-size:13px;color:#b8956a;font-style:italic;margin-bottom:22px;padding:8px 16px;background:#fdf9f5;border-radius:8px;border:1px dashed #e8d5c0}
 .status-pill{display:inline-block;padding:7px 24px;border-radius:30px;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
 .s-confirmado{background:#f0f9f4;color:#166534;border:1px solid #bbf7d0}
 .s-pendente{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
 .s-ausente{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
 .card-footer-text{font-size:13px;color:#9b7e6a;margin-top:28px}
 .card-thanks{font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:#7a4f2e;margin-top:6px}
-.print-btn{margin-top:24px;padding:10px 28px;border:1px solid #c4956a;background:transparent;color:#c4956a;border-radius:30px;cursor:pointer;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase}
-.print-btn:hover{background:#c4956a;color:#fff}
+.print-btn{margin-top:20px;padding:9px 24px;border:1px solid #d9c4a8;background:transparent;color:#9b7e6a;border-radius:30px;cursor:pointer;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase}
+.print-btn:hover{border-color:#c4956a;color:#c4956a}
+/* ── BOTÃO WHATSAPP CONFIRMAR ── */
+.wa-btn{display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:12px 28px;background:#25D366;color:#fff;border-radius:30px;text-decoration:none;font-size:13px;font-weight:500;letter-spacing:1px;transition:background .2s}
+.wa-btn:hover{background:#1da851}
+.wa-btn-icon{font-size:18px;line-height:1}
+.confirmed-box{margin-top:20px;padding:12px 20px;background:#f0f9f4;border:1px solid #bbf7d0;border-radius:12px;color:#166534;font-size:13px}
+.confirmed-box strong{display:block;font-size:15px;margin-bottom:2px}
+.nota-tbd{margin-top:20px;padding:12px 16px;background:#fdf9f5;border:1px dashed #e8d5c0;border-radius:10px;font-size:12px;color:#b8956a;line-height:1.5}
+/* ── ADMIN ── */
 .admin{max-width:1080px;margin:0 auto;padding:40px 20px 80px}
 .admin-top{text-align:center;margin-bottom:44px}
 .admin-top .eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#b8956a;margin-bottom:10px}
 .admin-top h1{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:400;color:#7a4f2e;margin-bottom:8px}
 .admin-top p{color:#9b7e6a;font-size:14px}
-.config{background:#fff;border:1px solid #e8d5c0;border-radius:14px;padding:20px 24px;margin-bottom:24px}
-.config label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#b8956a;display:block;margin-bottom:8px}
+.config{background:#fff;border:1px solid #e8d5c0;border-radius:14px;padding:20px 24px;margin-bottom:20px}
+.config label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#b8956a;display:block;margin-bottom:6px}
 .config input{width:100%;border:1px solid #e8d5c0;border-radius:8px;padding:10px 14px;font-size:14px;font-family:'Jost',sans-serif;outline:none;color:#3a2e26;background:#faf7f2}
 .config input:focus{border-color:#c4956a;background:#fff}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:28px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px;margin-bottom:28px}
 .stat{background:#fff;border:1px solid #e8d5c0;border-radius:12px;padding:16px;text-align:center}
 .stat-n{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;line-height:1;color:#7a4f2e}
 .stat-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#b8956a;margin-top:4px}
-.tabs{display:flex;gap:0;margin-bottom:-1px;position:relative;z-index:1}
-.tab-btn{padding:10px 24px;border:1px solid #e8d5c0;border-bottom:none;background:#faf7f2;color:#b8956a;cursor:pointer;font-family:'Jost',sans-serif;font-size:13px;border-radius:10px 10px 0 0;transition:all .15s}
-.tab-btn.active{background:#fff;color:#7a4f2e;border-color:#e8d5c0;font-weight:500}
+.tabs{display:flex;gap:0;margin-bottom:-1px;position:relative;z-index:1;flex-wrap:wrap}
+.tab-btn{padding:10px 22px;border:1px solid #e8d5c0;border-bottom:none;background:#faf7f2;color:#b8956a;cursor:pointer;font-family:'Jost',sans-serif;font-size:13px;border-radius:10px 10px 0 0;transition:all .15s}
+.tab-btn.active{background:#fff;color:#7a4f2e;font-weight:500}
 .tab-panel{background:#fff;border:1px solid #e8d5c0;border-radius:0 14px 14px 14px;overflow:hidden}
-.searchbar{padding:16px 20px;border-bottom:1px solid #f0e6d8;display:flex;gap:10px;flex-wrap:wrap}
+.searchbar{padding:14px 18px;border-bottom:1px solid #f0e6d8;display:flex;gap:10px;flex-wrap:wrap}
 .searchbar input,.searchbar select{border:1px solid #e8d5c0;border-radius:8px;padding:9px 14px;font-size:13px;font-family:'Jost',sans-serif;color:#3a2e26;outline:none;background:#faf7f2}
-.searchbar input{flex:1;min-width:180px}
+.searchbar input{flex:1;min-width:160px}
 .searchbar input:focus,.searchbar select:focus{border-color:#c4956a;background:#fff}
 table{width:100%;border-collapse:collapse}
-th{background:#7a4f2e;color:#f5ede0;padding:12px 16px;text-align:left;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:400}
-td{padding:11px 16px;border-bottom:1px solid #f5ede0;font-size:13px;color:#3a2e26}
+th{background:#7a4f2e;color:#f5ede0;padding:11px 14px;text-align:left;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:400}
+td{padding:10px 14px;border-bottom:1px solid #f5ede0;font-size:13px;color:#3a2e26}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:#fdf9f5}
 .id-cell{font-family:'Cormorant Garamond',serif;font-size:16px;color:#7a4f2e;font-style:italic}
-.qr-mini-btn{padding:5px 14px;border:1px solid #c4956a;border-radius:6px;background:#fff;color:#c4956a;cursor:pointer;font-size:12px;font-family:'Jost',sans-serif;transition:all .15s}
+.qr-mini-btn{padding:4px 12px;border:1px solid #c4956a;border-radius:6px;background:#fff;color:#c4956a;cursor:pointer;font-size:12px;font-family:'Jost',sans-serif}
 .qr-mini-btn:hover{background:#c4956a;color:#fff}
+.tbd-row td{color:#b8956a}
+/* ── QR GRID ── */
 .qr-grid-wrap{padding:20px}
-.qr-search-bar{margin-bottom:20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.qr-search-bar input{border:1px solid #e8d5c0;border-radius:8px;padding:9px 14px;font-size:13px;flex:1;min-width:200px;outline:none;font-family:'Jost',sans-serif;background:#faf7f2;color:#3a2e26}
-.qr-search-bar input:focus{border-color:#c4956a;background:#fff}
 .info-note{font-size:12px;color:#b8956a;padding:10px 14px;background:#fdf9f5;border-radius:8px;border-left:3px solid #c4956a;margin-bottom:16px}
-.qr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
-.qr-card{background:#fff;border:1px solid #e8d5c0;border-radius:12px;padding:16px;text-align:center}
-.qr-card-name{font-family:'Cormorant Garamond',serif;font-size:14px;color:#7a4f2e;margin:10px 0 2px;font-style:italic;line-height:1.2}
-.qr-card-info{font-size:11px;color:#b8956a;margin-bottom:10px;letter-spacing:1px}
-.dl-btn{width:100%;padding:7px;border:1px solid #c4956a;border-radius:8px;background:#fff;color:#c4956a;cursor:pointer;font-size:12px;font-family:'Jost',sans-serif;transition:all .15s}
+.qr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-top:12px}
+.qr-card{background:#fff;border:1px solid #e8d5c0;border-radius:12px;padding:14px;text-align:center}
+.qr-card-name{font-family:'Cormorant Garamond',serif;font-size:13px;color:#7a4f2e;margin:8px 0 2px;font-style:italic;line-height:1.2}
+.qr-card-info{font-size:11px;color:#b8956a;margin-bottom:10px}
+.dl-btn{width:100%;padding:7px;border:1px solid #c4956a;border-radius:8px;background:#fff;color:#c4956a;cursor:pointer;font-size:12px;font-family:'Jost',sans-serif}
 .dl-btn:hover{background:#c4956a;color:#fff}
+/* ── MODAL ── */
 .modal-bg{display:none;position:fixed;inset:0;background:rgba(58,46,38,.55);z-index:200;align-items:center;justify-content:center;padding:20px}
 .modal-bg.open{display:flex}
-.modal{background:#fff;border-radius:20px;padding:36px 32px;text-align:center;max-width:320px;width:100%;position:relative}
-.modal h3{font-family:'Cormorant Garamond',serif;font-size:22px;color:#7a4f2e;margin-bottom:4px;font-style:italic}
-.modal p{font-size:12px;color:#b8956a;margin-bottom:20px;letter-spacing:1px}
+.modal{background:#fff;border-radius:20px;padding:36px 28px;text-align:center;max-width:320px;width:100%;position:relative}
+.modal h3{font-family:'Cormorant Garamond',serif;font-size:20px;color:#7a4f2e;margin-bottom:4px;font-style:italic}
+.modal p{font-size:12px;color:#b8956a;margin-bottom:20px}
 #modal-qr-box{margin:0 auto 20px;display:flex;justify-content:center}
 .modal-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.btn-gold{padding:9px 22px;border:1px solid #c4956a;background:#c4956a;color:#fff;border-radius:8px;cursor:pointer;font-size:12px;font-family:'Jost',sans-serif;letter-spacing:1px}
-.btn-ghost{padding:9px 22px;border:1px solid #e8d5c0;background:#fff;color:#9b7e6a;border-radius:8px;cursor:pointer;font-size:12px;font-family:'Jost',sans-serif}
+.btn-gold{padding:9px 20px;border:1px solid #c4956a;background:#c4956a;color:#fff;border-radius:8px;cursor:pointer;font-size:12px;font-family:'Jost',sans-serif}
+.btn-ghost{padding:9px 20px;border:1px solid #e8d5c0;background:#fff;color:#9b7e6a;border-radius:8px;cursor:pointer;font-size:12px;font-family:'Jost',sans-serif}
 .btn-gold:hover{background:#b07d54}
-.close-x{position:absolute;top:14px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:#b8956a;line-height:1}
-@media(max-width:600px){.admin{padding:20px 12px 60px}.card{padding:44px 28px 40px}.tabs{flex-wrap:wrap}.tab-btn{border-radius:8px;border-bottom:1px solid #e8d5c0;margin-bottom:4px}}
+.close-x{position:absolute;top:14px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:#b8956a}
+@media(max-width:600px){.admin{padding:16px 10px 60px}.card{padding:40px 24px 36px}.tabs{flex-wrap:wrap}.tab-btn{border-radius:8px;border:1px solid #e8d5c0;margin-bottom:4px}}
 </style>
 </head>
 <body>
-
 <div id="app"></div>
-
 <div class="modal-bg" id="qr-modal">
   <div class="modal">
     <button class="close-x" onclick="closeModal()">x</button>
@@ -102,131 +110,226 @@ tr:hover td{background:#fdf9f5}
 </div>
 
 <script>
-// ==============================================
-// CONFIGURACAO
-// ==============================================
-var BASE_URL = 'https://edgersn.github.io';
+// ================================================================
+// ⚙️  CONFIGURAÇÕES — ALTERE AQUI
+// ================================================================
+var BASE_URL       = 'https://edgersn.github.io';
+var WHATSAPP_NUM   = '244XXXXXXXXX';   // ← substitua pelo nº WhatsApp dos noivos (ex: 244923000000)
+var NOME_CASAMENTO = 'Amilton e Odmira';
+var DATA_CASAMENTO = '2026';
 
-// ==============================================
-// VARIAVEIS GLOBAIS - ANTES DO ROUTING!
-// ==============================================
+// ================================================================
+// 📊 COMO FUNCIONA O ESTADO (STATUS) — LEIA ANTES DE EDITAR
+// ================================================================
+//
+//  Cada convidado tem um dos 3 estados:
+//
+//  'Confirmado' → Presença confirmada (verde no cartão)
+//  'Pendente'   → Aguarda confirmação — estado padrão (amarelo)
+//  'Ausente'    → Não vai comparecer (vermelho)
+//
+//  COMO CONFIRMAR PRESENÇA — 2 formas:
+//
+//  Forma 1 — MANUAL (editor de código):
+//    Encontre o convidado no guestData abaixo.
+//    Mude  status: 'Pendente'  para  status: 'Confirmado'
+//    Guarde o ficheiro → commit no GitHub → deploy automático.
+//
+//  Forma 2 — VIA WHATSAPP (pelo convidado):
+//    O convidado escaneia o QR code → abre o cartão digital.
+//    Clica em "Confirmar Presença via WhatsApp".
+//    Você recebe a mensagem no WhatsApp e faz a Forma 1 acima.
+//    Configure o nº em WHATSAPP_NUM (linha acima).
+//
+//  DICA: Use Ctrl+F no VS Code para encontrar um convidado rapidamente.
+// ================================================================
+
+// ================================================================
+// ✏️  LISTA DE CONVIDADOS — EDITE AQUI
+// ================================================================
+//
+//  Formato de cada entrada:
+//  ID: { name: 'NOME COMPLETO', table: NÚMERO_MESA, status: 'ESTADO' },
+//
+//  • ID     → número único (1 a 200), sem repetir
+//  • name   → nome como aparece no cartão
+//  • table  → número da mesa; use 0 se a mesa ainda não foi atribuída
+//  • status → 'Confirmado' | 'Pendente' | 'Ausente'
+//
+//  Para adicionar novos nomes: adicione uma nova linha no padrão acima.
+//  Convidados sem entrada ficam automaticamente como 'A definir'.
+// ================================================================
+
+var guestData = {
+  //  ID  name                                      table  status
+  // ── MESA 1 ─────────────────────────────────────────────────────────
+  1:  { name: 'Joy Monteiro',                       table: 1,  status: 'Confirmado' },
+  2:  { name: 'Dário de Jesus',                     table: 1,  status: 'Confirmado' },
+  3:  { name: 'Rosy e Esposo',                      table: 1,  status: 'Confirmado' },
+  4:  { name: 'Délcia e Sulita',                    table: 1,  status: 'Confirmado' },
+  5:  { name: 'Armando Jorge e Esposa',             table: 1,  status: 'Confirmado' },
+  6:  { name: 'Valdemiro e Esposa',                 table: 1,  status: 'Confirmado' },
+  // ── SEM MESA — edite 'table' quando a wedding planner confirmar ─────
+  7:  { name: 'Dalva e Esposo',                     table: 0,  status: 'Pendente'   },
+  8:  { name: 'Bruno Mateus e Esposa',              table: 0,  status: 'Pendente'   },
+  9:  { name: 'Hélder Fuca e Esposa',               table: 0,  status: 'Pendente'   },
+  10: { name: 'Ernestinho e Esposa',                table: 0,  status: 'Pendente'   },
+  11: { name: 'Donald Lucas',                       table: 0,  status: 'Pendente'   },
+  12: { name: 'Dino The Roots',                     table: 0,  status: 'Pendente'   },
+  13: { name: 'Demofilo The Roots',                 table: 0,  status: 'Pendente'   },
+  14: { name: 'Fernando e Esposa',                  table: 0,  status: 'Pendente'   },
+  15: { name: 'Fató',                               table: 0,  status: 'Pendente'   },
+  16: { name: 'Celso e Esposa',                     table: 0,  status: 'Pendente'   },
+  17: { name: 'Jorginho e Esposa',                  table: 0,  status: 'Pendente'   },
+  18: { name: 'Alberto e Esposa',                   table: 0,  status: 'Pendente'   },
+  19: { name: 'Jesus e Esposa',                     table: 0,  status: 'Pendente'   },
+  20: { name: 'Carlos e Esposa',                    table: 0,  status: 'Pendente'   },
+  21: { name: 'Elias e Esposa',                     table: 0,  status: 'Pendente'   },
+  22: { name: 'Izaida e Esposo',                    table: 0,  status: 'Pendente'   },
+  23: { name: 'José Gaspar e Esposa',               table: 0,  status: 'Pendente'   },
+  24: { name: 'Sepúlveda e Esposa',                 table: 0,  status: 'Pendente'   },
+  25: { name: 'Faustina Miguel e Esposo',           table: 0,  status: 'Pendente'   },
+  26: { name: 'Miguel Fernando e Esposa',           table: 0,  status: 'Pendente'   },
+  27: { name: 'José Lisboa e Esposa',               table: 0,  status: 'Pendente'   },
+  28: { name: 'Yara dos Santos e Esposo',           table: 0,  status: 'Pendente'   },
+  29: { name: 'Amélia Varandas',                    table: 0,  status: 'Pendente'   },
+  30: { name: 'Fazona Augusto e Esposa',            table: 0,  status: 'Pendente'   },
+  31: { name: 'Ducuta Costa e Esposa',              table: 0,  status: 'Pendente'   },
+  32: { name: 'António Kipanda e Esposa',           table: 0,  status: 'Pendente'   },
+  33: { name: 'Yunara Nascimento e Esposo',         table: 0,  status: 'Pendente'   },
+  34: { name: 'Silva Vilança',                      table: 0,  status: 'Pendente'   },
+  35: { name: 'Nara Pereira e Esposo',              table: 0,  status: 'Pendente'   },
+  36: { name: 'Irene Victor e Esposo',              table: 0,  status: 'Pendente'   },
+  37: { name: 'Natália Sebastião e Esposo',         table: 0,  status: 'Pendente'   },
+  38: { name: 'Herménio da Costa e Esposa',         table: 0,  status: 'Pendente'   },
+  39: { name: 'Etelvina e Esposo',                  table: 0,  status: 'Pendente'   },
+  40: { name: 'Luís Salvador e Companheira',        table: 0,  status: 'Pendente'   },
+  41: { name: 'Tavares Pedro e Companheira',        table: 0,  status: 'Pendente'   },
+  // ── MESA 25 ────────────────────────────────────────────────────────
+  42: { name: 'A definir',                          table: 25, status: 'Pendente'   },
+  43: { name: 'A definir',                          table: 25, status: 'Pendente'   },
+  // ── ADICIONE AQUI OS PRÓXIMOS CONVIDADOS (exemplo): ────────────────
+  // 44: { name: 'Nome e Esposa', table: 3, status: 'Pendente' },
+  // 45: { name: 'Outro Nome',    table: 3, status: 'Pendente' },
+};
+
+// ================================================================
+// AUTO-CONSTRUÇÃO DA LISTA COMPLETA — NÃO EDITE ABAIXO
+// Os convidados sem entrada em guestData ficam como 'A definir'
+// ================================================================
+var GUESTS = [];
+for (var _i = 1; _i <= 200; _i++) {
+  var _d = guestData[_i] || { name: 'A definir', table: 0, status: 'Pendente' };
+  GUESTS.push({ id: _i, name: _d.name, table: _d.table, status: _d.status });
+}
+
+// ================================================================
+// VARIÁVEIS GLOBAIS — ANTES DO ROUTING (não mova)
+// ================================================================
 var activeTab  = 'lista';
 var searchStr  = '';
 var statusFil  = '';
 var qrFilter   = '';
 var modalGuest = null;
 
-// ==============================================
-// GERADOR DETERMINISTICO DE CONVIDADOS
-// ==============================================
-function gerarConvidados() {
-  var nomesM = ['Joao','Manuel','Antonio','Carlos','Pedro','Paulo','Miguel','Fernando','Ricardo','Eduardo','Luis','Francisco','Helder','Nuno','Bruno','Andre','Daniel','Marcos','Tiago','Rafael','Kelson','Adilson','Ernesto','Celestino','Joaquim','Filipe','Domingos','Faustino','Sebastiao','Augusto','Horacio','Leandro','Osvaldo','Reinaldo','Venancio','Guilherme','Vladmir','Isaias','Edmundo','Helio'];
-  var nomesF = ['Maria','Ana','Sofia','Isabel','Catarina','Marta','Sandra','Paula','Carla','Joana','Luisa','Teresa','Beatriz','Ines','Margarida','Filomena','Conceicao','Lurdes','Graca','Helena','Rosa','Amelia','Felicia','Benedita','Albertina','Leopoldina','Deolinda','Esperanca','Fatima','Gertrudes','Susana','Vanessa','Patricia','Claudia','Debora','Elisabete','Fernanda','Gisela','Hortencia','Ivone'];
-  var apelidos = ['Silva','Santos','Costa','Ferreira','Oliveira','Pereira','Rodrigues','Almeida','Nascimento','Carvalho','Lopes','Marques','Fernandes','Gomes','Martins','Pinto','Ribeiro','Sousa','Machado','Dias','Andrade','Araujo','Campos','Castro','Correia','Cunha','Figueiredo','Freitas','Henriques','Lima','Matos','Moura','Neves','Nunes','Pires','Ramos','Reis','Rocha','Tavares','Teixeira'];
-  var acomp = ['e esposa','e marido','e acompanhante','e familia','e esposo',''];
-  var estados = ['Confirmado','Confirmado','Confirmado','Confirmado','Confirmado','Confirmado','Confirmado','Pendente','Pendente','Ausente'];
-
-  // Gerador deterministico simples (s mantem-se dentro de limites seguros)
-  var s = 7391;
-  function rnd() {
-    s = ((s * 1103515245) + 12345) & 0x7fffffff;
-    return s / 0x7fffffff;
-  }
-
-  var lista = [];
-  for (var i = 1; i <= 200; i++) {
-    var mesa   = Math.ceil(i / 4);
-    var masculino = rnd() > 0.44;
-    var pool   = masculino ? nomesM : nomesF;
-    var nome1  = pool[Math.floor(rnd() * pool.length)];
-    var ap1    = apelidos[Math.floor(rnd() * apelidos.length)];
-    var ap2    = apelidos[Math.floor(rnd() * apelidos.length)];
-    var comp   = acomp[Math.floor(rnd() * acomp.length)];
-    var estado = estados[Math.floor(rnd() * estados.length)];
-    var nomeCompleto = nome1 + ' ' + ap1;
-    if (ap1 !== ap2 && rnd() > 0.5) nomeCompleto += ' ' + ap2;
-    if (comp) nomeCompleto += ' ' + comp;
-    lista.push({ id: i, name: nomeCompleto, table: mesa, status: estado });
-  }
-  return lista;
-}
-
-var GUESTS = gerarConvidados();
-
-// ==============================================
-// ROUTING (DEPOIS das variaveis globais!)
-// ==============================================
+// ================================================================
+// ROUTING
+// ================================================================
 (function() {
-  var params  = new URLSearchParams(window.location.search);
-  var gId     = parseInt(params.get('id'));
-  if (gId >= 1 && gId <= 200) {
-    mostrarCartao(gId);
-  } else {
-    mostrarAdmin();
-  }
+  var p  = new URLSearchParams(window.location.search);
+  var id = parseInt(p.get('id'));
+  if (id >= 1 && id <= 200) mostrarCartao(id);
+  else mostrarAdmin();
 })();
 
-// ==============================================
-// VISTA CONVIDADO
-// ==============================================
+// ================================================================
+// CARTÃO DO CONVIDADO
+// ================================================================
 function mostrarCartao(id) {
-  var g = null;
-  for (var i = 0; i < GUESTS.length; i++) { if (GUESTS[i].id === id) { g = GUESTS[i]; break; } }
+  var g = GUESTS[id - 1];
   if (!g) {
-    document.getElementById('app').innerHTML = '<div style="text-align:center;padding:80px 20px;font-family:Georgia,serif;color:#9b7e6a;font-size:22px">Convidado nao encontrado.</div>';
+    document.getElementById('app').innerHTML =
+      '<div style="text-align:center;padding:80px 20px;font-family:Georgia,serif;color:#9b7e6a;font-size:22px">Convidado não encontrado.</div>';
     return;
   }
-  document.title = g.name + ' - Casamento 2026';
+
+  document.title = (g.name !== 'A definir' ? g.name : 'Convite') + ' — Casamento ' + NOME_CASAMENTO;
+
+  // Mesa
+  var mesaHtml = g.table > 0
+    ? '<div class="val-big">' + g.table + '</div>'
+    : '<div class="val-tbd">Mesa a confirmar</div>';
+
+  // Botão de confirmação via WhatsApp
+  var confirmHtml = '';
+  if (g.name === 'A definir') {
+    confirmHtml = '<div class="nota-tbd">Este lugar ainda não foi atribuído a nenhum convidado.</div>';
+  } else if (g.status === 'Confirmado') {
+    confirmHtml = '<div class="confirmed-box"><strong>Presença confirmada!</strong>Estamos à sua espera. Obrigado!</div>';
+  } else if (g.status === 'Ausente') {
+    confirmHtml = '<div class="nota-tbd">Este convidado informou que não poderá comparecer.</div>';
+  } else {
+    // Pendente — mostrar botão WhatsApp
+    var msg = encodeURIComponent('Olá! Confirmo a minha presença no Casamento de ' + NOME_CASAMENTO + '. Nome: ' + g.name + ' — Convidado Nº ' + pad(g.id));
+    var waUrl = 'https://wa.me/' + WHATSAPP_NUM + '?text=' + msg;
+    confirmHtml = WHATSAPP_NUM !== '244XXXXXXXXX'
+      ? '<a class="wa-btn" href="' + waUrl + '" target="_blank"><span class="wa-btn-icon">&#128242;</span> Confirmar Presença via WhatsApp</a>'
+      : '';
+  }
+
   var sc = 's-' + g.status.toLowerCase();
+
   document.getElementById('app').innerHTML =
     '<div class="card-wrap"><div class="card">' +
-    '<span class="ornament">* * *</span>' +
+    '<span class="ornament">* &nbsp; * &nbsp; *</span>' +
     '<div class="card-welcome">Bem-vindo!</div>' +
-    '<div class="card-sub">Ao Casamento &middot; 11/09/2026</div>' +
-    '<div class="card-sub">Amilton &#9825; Odmira</div>' +
+    '<div class="card-sub">Casamento de ' + NOME_CASAMENTO + ' &middot; ' + DATA_CASAMENTO + '</div>' +
     '<div class="hr"><div class="hr-icon">&#9825;</div></div>' +
     '<div class="lbl">Nome</div>' +
     '<div class="val">' + g.name + '</div>' +
     '<div class="lbl">Convidado N&ordm;</div>' +
     '<div class="val-big">' + pad(g.id) + '</div>' +
     '<div class="lbl">Mesa</div>' +
-    '<div class="val-big">' + g.table + '</div>' +
+    mesaHtml +
     '<div class="lbl" style="margin-bottom:10px">Estado</div>' +
     '<span class="status-pill ' + sc + '">' + g.status + '</span>' +
-    '<div class="hr"><div class="hr-icon">*</div></div>' +
+    confirmHtml +
+    '<div class="hr" style="margin-top:24px"><div class="hr-icon">*</div></div>' +
     '<div class="card-footer-text">Obrigado por celebrar connosco.</div>' +
-    '<div class="card-thanks">Muito obrigado &hearts;</div>' +
-    '<div><button class="print-btn" onclick="window.print()">Imprimir / Guardar</button></div>' +
+    '<div class="card-thanks">Muito obrigado &#9829;</div>' +
+    '<div><button class="print-btn" onclick="window.print()">Imprimir</button></div>' +
     '</div></div>';
 }
 
 function pad(n) { return n < 10 ? '00'+n : n < 100 ? '0'+n : ''+n; }
 
-// ==============================================
-// ADMIN
-// ==============================================
+// ================================================================
+// PAINEL ADMIN
+// ================================================================
 function mostrarAdmin() {
-  var conf = 0, pend = 0, ause = 0;
+  var conf = 0, pend = 0, ause = 0, tbd = 0;
   for (var i = 0; i < GUESTS.length; i++) {
+    if (GUESTS[i].name === 'A definir') { tbd++; continue; }
     if (GUESTS[i].status === 'Confirmado') conf++;
     else if (GUESTS[i].status === 'Pendente') pend++;
     else ause++;
   }
+  var nomes = GUESTS.length - tbd;
   document.getElementById('app').innerHTML =
     '<div class="admin">' +
     '<div class="admin-top">' +
     '<div class="eyebrow">* Sistema de Convites *</div>' +
-    '<h1>Gestao de Convidados</h1>' +
-    '<p>200 convidados &middot; 50 mesas &middot; QR codes com fundo transparente</p>' +
+    '<h1>Casamento de ' + NOME_CASAMENTO + '</h1>' +
+    '<p>Gestão de convidados &middot; QR codes &middot; Confirmações de presença</p>' +
     '</div>' +
-    '<div class="config"><label>URL do GitHub Pages (altere apos publicar)</label>' +
-    '<input id="url-inp" value="' + BASE_URL + '" oninput="BASE_URL=this.value" placeholder="https://edgersn.github.io"></div>' +
+    '<div class="config"><label>URL do site (GitHub Pages)</label>' +
+    '<input id="url-inp" value="' + BASE_URL + '" oninput="BASE_URL=this.value"></div>' +
     '<div class="stats">' +
-    '<div class="stat"><div class="stat-n">200</div><div class="stat-l">Total</div></div>' +
+    '<div class="stat"><div class="stat-n">' + nomes + '</div><div class="stat-l">Com nome</div></div>' +
     '<div class="stat"><div class="stat-n" style="color:#166534">' + conf + '</div><div class="stat-l">Confirmados</div></div>' +
     '<div class="stat"><div class="stat-n" style="color:#92400e">' + pend + '</div><div class="stat-l">Pendentes</div></div>' +
     '<div class="stat"><div class="stat-n" style="color:#991b1b">' + ause + '</div><div class="stat-l">Ausentes</div></div>' +
-    '<div class="stat"><div class="stat-n">50</div><div class="stat-l">Mesas</div></div>' +
+    '<div class="stat"><div class="stat-n" style="color:#b8956a">' + tbd + '</div><div class="stat-l">A definir</div></div>' +
     '</div>' +
     '<div class="tabs">' +
     '<button class="tab-btn ' + (activeTab==='lista'?'active':'') + '" onclick="mudarTab(\'lista\')">Lista de Convidados</button>' +
@@ -257,9 +360,11 @@ function filtrados() {
   var res = [];
   for (var i = 0; i < GUESTS.length; i++) {
     var g = GUESTS[i];
-    var okNome   = !q || g.name.toLowerCase().indexOf(q) >= 0 || (''+g.id).indexOf(q) >= 0;
-    var okStatus = !statusFil || g.status === statusFil;
-    if (okNome && okStatus) res.push(g);
+    var ok1 = !q || g.name.toLowerCase().indexOf(q) >= 0 || (''+g.id).indexOf(q) >= 0;
+    var ok2 = !statusFil || g.status === statusFil;
+    var ok3 = statusFil !== 'A definir' || g.name === 'A definir';
+    if (statusFil === 'A definir') { if (g.name === 'A definir') res.push(g); }
+    else if (ok1 && ok2) res.push(g);
   }
   return res;
 }
@@ -269,39 +374,39 @@ function renderLista(el) {
   var rows = '';
   for (var i = 0; i < list.length; i++) {
     var g = list[i];
+    var isTbd = g.name === 'A definir';
     var sc = 's-' + g.status.toLowerCase();
-    rows += '<tr>' +
+    var mesaStr = g.table > 0 ? 'Mesa ' + g.table : isTbd ? '—' : 'A confirmar';
+    rows += '<tr class="' + (isTbd?'tbd-row':'') + '">' +
       '<td><span class="id-cell">#' + pad(g.id) + '</span></td>' +
-      '<td>' + g.name + '</td>' +
-      '<td style="font-weight:500">Mesa ' + g.table + '</td>' +
-      '<td><span class="status-pill ' + sc + '" style="font-size:10px;padding:4px 12px">' + g.status + '</span></td>' +
+      '<td>' + (isTbd ? '<span style="color:#d9c4a8">A definir</span>' : g.name) + '</td>' +
+      '<td>' + mesaStr + '</td>' +
+      '<td>' + (isTbd ? '' : '<span class="status-pill ' + sc + '" style="font-size:10px;padding:3px 10px">' + g.status + '</span>') + '</td>' +
       '<td><button class="qr-mini-btn" onclick="abrirModal(' + g.id + ')">QR</button></td>' +
       '</tr>';
   }
   if (!rows) rows = '<tr><td colspan="5" style="text-align:center;padding:32px;color:#b8956a">Nenhum resultado.</td></tr>';
-
   el.innerHTML =
     '<div class="searchbar">' +
-    '<input placeholder="Pesquisar por nome ou numero..." value="' + searchStr + '" oninput="searchStr=this.value;renderizarTab()">' +
+    '<input placeholder="Pesquisar por nome ou número..." value="' + searchStr + '" oninput="searchStr=this.value;renderizarTab()">' +
     '<select onchange="statusFil=this.value;renderizarTab()" style="cursor:pointer">' +
-    '<option value="">Todos os estados</option>' +
+    '<option value="">Todos</option>' +
     '<option value="Confirmado"' + (statusFil==='Confirmado'?' selected':'') + '>Confirmado</option>' +
     '<option value="Pendente"' + (statusFil==='Pendente'?' selected':'') + '>Pendente</option>' +
     '<option value="Ausente"' + (statusFil==='Ausente'?' selected':'') + '>Ausente</option>' +
+    '<option value="A definir"' + (statusFil==='A definir'?' selected':'') + '>A definir</option>' +
     '</select></div>' +
     '<div style="overflow-x:auto"><table>' +
-    '<thead><tr><th>N&ordm;</th><th>Nome</th><th>Mesa</th><th>Estado</th><th>QR Code</th></tr></thead>' +
+    '<thead><tr><th>N&ordm;</th><th>Nome</th><th>Mesa</th><th>Estado</th><th>QR</th></tr></thead>' +
     '<tbody>' + rows + '</tbody></table></div>' +
-    '<div style="padding:14px 20px;font-size:12px;color:#b8956a;text-align:right">' + list.length + ' convidado(s)</div>';
+    '<div style="padding:12px 18px;font-size:12px;color:#b8956a;text-align:right">' + list.length + ' convidado(s)</div>';
 }
 
 function renderQR(el) {
   el.innerHTML =
     '<div class="qr-grid-wrap">' +
-    '<div class="info-note">QR codes com fundo transparente - prontos para colocar no convite. Filtre para encontrar o convidado.</div>' +
-    '<div class="qr-search-bar">' +
-    '<input placeholder="Filtrar convidados..." value="' + qrFilter + '" oninput="qrFilter=this.value;atualizarGrelha()">' +
-    '</div>' +
+    '<div class="info-note">Clique em "Descarregar PNG" para obter o QR code com fundo transparente — pronto para o convite.</div>' +
+    '<input style="width:100%;border:1px solid #e8d5c0;border-radius:8px;padding:9px 14px;font-size:13px;outline:none;font-family:Jost,sans-serif;background:#faf7f2;color:#3a2e26;margin-bottom:12px" placeholder="Filtrar por nome ou número..." value="' + qrFilter + '" oninput="qrFilter=this.value;atualizarGrelha()">' +
     '<div class="qr-grid" id="qr-grid"></div>' +
     '</div>';
   atualizarGrelha();
@@ -312,6 +417,7 @@ function atualizarGrelha() {
   var list = [];
   for (var i = 0; i < GUESTS.length; i++) {
     var g = GUESTS[i];
+    if (g.name === 'A definir') continue;
     if (!q || g.name.toLowerCase().indexOf(q) >= 0 || (''+g.id).indexOf(q) >= 0) {
       list.push(g);
       if (list.length >= 48) break;
@@ -322,52 +428,49 @@ function atualizarGrelha() {
   var html = '';
   for (var i = 0; i < list.length; i++) {
     var g = list[i];
-    var nome = g.name.split(' e ')[0].split(' ').slice(0,2).join(' ');
+    var nomeShort = g.name.split(' e ')[0].split(' ').slice(0, 2).join(' ');
     html += '<div class="qr-card">' +
-      '<div id="qrt-' + g.id + '" style="width:130px;height:130px;margin:0 auto"></div>' +
-      '<div class="qr-card-name">' + nome + '</div>' +
-      '<div class="qr-card-info">#' + pad(g.id) + ' - Mesa ' + g.table + '</div>' +
+      '<div id="qrt-' + g.id + '" style="width:120px;height:120px;margin:0 auto"></div>' +
+      '<div class="qr-card-name">' + nomeShort + '</div>' +
+      '<div class="qr-card-info">#' + pad(g.id) + (g.table > 0 ? ' &middot; Mesa ' + g.table : '') + '</div>' +
       '<button class="dl-btn" onclick="baixarQRPorId(' + g.id + ')">Descarregar PNG</button>' +
       '</div>';
   }
+  if (!html) html = '<div style="color:#b8956a;font-size:13px;padding:20px">Nenhum convidado com nome atribuído encontrado.</div>';
   grid.innerHTML = html;
   setTimeout(function() {
-    for (var i = 0; i < list.length; i++) { gerarMiniaturaQR(list[i]); }
-  }, 100);
+    for (var i = 0; i < list.length; i++) gerarMiniaturaQR(list[i]);
+  }, 80);
 }
 
 function gerarMiniaturaQR(g) {
   var el = document.getElementById('qrt-' + g.id);
   if (!el || el.childNodes.length) return;
-  try {
-    new QRCode(el, { text: BASE_URL + '?id=' + g.id, width: 130, height: 130, colorDark: '#3a2e26', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H });
-  } catch(e) {}
+  try { new QRCode(el, { text: BASE_URL + '?id=' + g.id, width: 120, height: 120, colorDark: '#3a2e26', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H }); } catch(e) {}
 }
 
-// ==============================================
+// ================================================================
 // MODAL QR
-// ==============================================
+// ================================================================
 function abrirModal(id) {
   for (var i = 0; i < GUESTS.length; i++) { if (GUESTS[i].id === id) { modalGuest = GUESTS[i]; break; } }
   document.getElementById('m-name').textContent = modalGuest.name;
-  document.getElementById('m-info').textContent = 'Mesa ' + modalGuest.table + ' - Convidado #' + pad(modalGuest.id);
+  document.getElementById('m-info').textContent = 'Nº ' + pad(modalGuest.id) + (modalGuest.table > 0 ? ' · Mesa ' + modalGuest.table : '');
   var box = document.getElementById('modal-qr-box');
   box.innerHTML = '';
-  try {
-    new QRCode(box, { text: BASE_URL + '?id=' + id, width: 200, height: 200, colorDark: '#3a2e26', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H });
-  } catch(e) {}
+  try { new QRCode(box, { text: BASE_URL + '?id=' + id, width: 200, height: 200, colorDark: '#3a2e26', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H }); } catch(e) {}
   document.getElementById('qr-modal').classList.add('open');
 }
 function closeModal() { document.getElementById('qr-modal').classList.remove('open'); }
 
-// ==============================================
+// ================================================================
 // DOWNLOAD PNG TRANSPARENTE
-// ==============================================
-function tornarTransparente(srcCanvas) {
+// ================================================================
+function tornarTransparente(src) {
   var c = document.createElement('canvas');
-  c.width = srcCanvas.width; c.height = srcCanvas.height;
+  c.width = src.width; c.height = src.height;
   var ctx = c.getContext('2d');
-  ctx.drawImage(srcCanvas, 0, 0);
+  ctx.drawImage(src, 0, 0);
   var d = ctx.getImageData(0, 0, c.width, c.height);
   for (var i = 0; i < d.data.length; i += 4) {
     if (d.data[i] > 200 && d.data[i+1] > 200 && d.data[i+2] > 200) d.data[i+3] = 0;
@@ -375,39 +478,31 @@ function tornarTransparente(srcCanvas) {
   ctx.putImageData(d, 0, 0);
   return c;
 }
-
 function downloadCurrentQR() {
   var canvas = document.querySelector('#modal-qr-box canvas');
   if (!canvas) return;
-  var tc = tornarTransparente(canvas);
   var a = document.createElement('a');
   a.download = 'qr-convidado-' + pad(modalGuest.id) + '.png';
-  a.href = tc.toDataURL('image/png');
+  a.href = tornarTransparente(canvas).toDataURL('image/png');
   a.click();
 }
-
 function baixarQRPorId(id) {
-  var g = null;
-  for (var i = 0; i < GUESTS.length; i++) { if (GUESTS[i].id === id) { g = GUESTS[i]; break; } }
+  var g = GUESTS[id - 1];
   var tmp = document.createElement('div');
   tmp.style.cssText = 'position:absolute;left:-9999px;visibility:hidden';
   document.body.appendChild(tmp);
-  try {
-    new QRCode(tmp, { text: BASE_URL + '?id=' + id, width: 500, height: 500, colorDark: '#000000', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H });
-  } catch(e) {}
+  try { new QRCode(tmp, { text: BASE_URL + '?id=' + id, width: 500, height: 500, colorDark: '#000000', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H }); } catch(e) {}
   setTimeout(function() {
     var cv = tmp.querySelector('canvas');
     if (cv) {
-      var tc = tornarTransparente(cv);
       var a = document.createElement('a');
-      a.download = 'qr-' + pad(id) + '-mesa' + g.table + '.png';
-      a.href = tc.toDataURL('image/png');
+      a.download = 'qr-' + pad(id) + (g && g.table > 0 ? '-mesa' + g.table : '') + '.png';
+      a.href = tornarTransparente(cv).toDataURL('image/png');
       a.click();
     }
     document.body.removeChild(tmp);
   }, 300);
 }
-
 document.getElementById('qr-modal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
 </script>
 </body>
